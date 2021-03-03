@@ -1,0 +1,435 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@mixin pseudo() {
+    position: absolute;
+    content: "";
+}
+
+$white: rgb(255, 255, 255);
+$white-01: rgba(255, 255, 255, .1);
+$white-02: rgba(255, 255, 255, .2);
+$white-03: rgba(255, 255, 255, .3);
+$white-05: rgba(255, 255, 255, .5);
+$black-01: rgba(0, 0, 0, .1);
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    color: $white;
+    height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, #031d35, #0c203f);
+    font-size: 20px;
+    font-family: 'Patrick Hand', cursive;
+                    
+    @media(max-width: 375px) {
+        font-size: 14px;
+    }
+}
+
+#root {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    @media(max-width: 375px) {
+        max-width: 90%;
+    }
+}
+
+section {
+    position: relative;
+    margin: 0 auto;
+}
+
+.color {
+    position: absolute;
+    filter: blur(150px);
+}
+
+.color:nth-child(1) {
+    top: -50%;
+    width: 70%;
+    height: 70%;
+    background-color: #1875df;
+}
+
+.color:nth-child(2) {
+    bottom: -150px;
+    left: -70%;
+    width: 75%;
+    height: 75%;
+    background-color: #12c9d6;
+}
+
+.color:nth-child(3) {
+    bottom: -150px;
+    right: -60%;
+    width: 80%;
+    height: 80%;
+    background-color: #7326b3;
+}
+
+.square {
+    position: absolute;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px $black-01;
+    border-radius: 10px;
+    border: 1px solid $white-05;
+    border-right: 1px solid $white-02;
+    border-bottom: 1px solid $white-02;
+    background-color: $white-01;
+    animation: updown 10s linear infinite;
+
+    @keyframes updown {
+        0%, 100% {
+            transform: translateY(-40px);
+        }
+        50% {
+            transform: translateY(40px);
+        }
+    }
+
+    &:nth-child(1) {
+        top: -50px;
+        right: -60px;
+        width: 100px;
+        height: 100px;
+                    
+        @media(max-width: 375px) {
+            right: -80px;
+        }
+    }
+    
+    &:nth-child(2) {
+        top: 150px;
+        left: -100px;
+        width: 120px;
+        height: 120px;
+        z-index: 2;
+        animation-delay: -2s;
+                            
+        @media(max-width: 375px) {
+            left: -110px;
+        }
+    }
+    
+    &:nth-child(3) {
+        bottom: 50px;
+        right: -60px;
+        width: 80px;
+        height: 80px;
+        z-index: 2;
+        animation-delay: -3s;
+                            
+        @media(max-width: 375px) {
+            right: -70px;
+        }
+    }
+    
+    &:nth-child(4) {
+        bottom: -80px;
+        left: 100px;
+        width: 50px;
+        height: 50px;
+        animation-delay: -4s;
+    }
+    
+    &:nth-child(5) {
+        top: -80px;
+        left: 140px;
+        width: 60px;
+        height: 60px;
+        animation-delay: -5s;
+    }
+}
+
+.container {
+    position: relative;
+    background-color: $white-01;
+    border-radius: 10px;
+    margin: 0 auto;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 25px 45px $black-01;
+    border: 1px solid $white-05;
+    border-right: 1px solid $white-02;
+    border-bottom: 1px solid $white-02;
+}
+
+.form {
+    position: relative;
+    padding: 0 20px;
+    width: 100%;
+    min-height: 400px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+            
+    @media(max-width: 375px) {
+        padding: 20px;
+    }
+}
+
+.form__title {
+    position: relative;
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    margin: 0 0 20px;
+
+    &::before {
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -10px;
+        width: 80px;
+        height: 4px;
+        background-color: $white;
+    }
+}
+
+.todo-form {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.todo-input {
+    padding: 6px 16px;
+    margin: 0;
+    background-color: $white-02;
+    color: $white;
+    border: none;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    border: 1px solid $white-05;
+    border-right: 1px solid $white-02;
+    border-bottom: 1px solid $white-02;
+    min-width: 0;
+        
+    @media(max-width: 375px) {
+        font-size: .65rem;
+        padding: 6px 10px;
+        flex: 1 1 auto;
+        width: 100px;
+    }
+
+    &::placeholder {
+        color: $white;
+    }
+
+    &:hover {
+        background-color: $white-05;
+        outline: 1px solid rgba(7, 199, 224, 0.8);
+    }
+
+    &:focus {
+        background-color: $white-03;
+        outline: 1px solid rgba(7, 199, 224, 0.8);
+    }
+}
+
+.todo-row-input {
+    background-color: transparent;
+    color: $white;
+    border: none;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    min-width: 0;
+            
+    @media(max-width: 375px) {
+        font-size: .7rem;
+        width: 100px;
+        flex: 1 1 auto;
+    }
+}
+
+@keyframes animate { 
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+.todo-button {
+    background-color: $white-03;
+    padding: 10px;
+    font-size: .7rem;
+    cursor: pointer;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border: 1px solid $white-05;
+    border-right: 1px solid $white-02;
+    border-bottom: 1px solid $white-02;
+    color: $white;
+    
+    &:hover {
+        background-color: $white-05;
+        transition: .3 ease-in-out;
+    }
+
+    &:active {
+        background-color: rgba(7, 199, 224, 0.4);
+        transition: .3 ease-in-out;
+    }
+}
+
+.todo-row {
+    width: 100%;
+    background-color: $white-02;
+    border: 1px solid $white-05;
+    border-right: 1px solid $white-02;
+    border-bottom: 1px solid $white-02;
+    letter-spacing: 1px;
+    box-shadow: 0 5px 15px $black-01;
+    position: relative;
+    overflow: hidden;
+
+    &.complete {
+        opacity: 0.1;
+        order: 1;
+
+        &::before,
+        &::after,
+        & .todo-row-ping::before,
+        & .todo-row-ping::after {
+            display: none;
+        }
+    }
+
+    &::before {
+        @include pseudo();
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, rgb(0, 247, 255));
+        animation: animate1 1s linear infinite;
+        animation-delay: 0s;
+      }
+    
+      &::after {
+        @include pseudo();
+        right: 0;
+        top: -100%;
+        width: 2px;
+        height: 100%;
+        background: linear-gradient(180deg, transparent, rgb(0, 247, 255));
+        animation: animate2 1s linear infinite;
+        animation-delay: 0s;
+      }
+
+    &:hover {
+        background-color: rgba(7, 199, 224, 0.4);
+    }
+
+    &:active {
+        background-color: rgb(0, 247, 255);
+    }
+}
+
+.todo-row-ping {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 16px;
+
+        &::before {
+            @include pseudo();
+            bottom: 0;
+            right: -100%;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(-90deg, transparent, rgb(0, 247, 255));
+            animation: animate3 1s linear infinite;
+            animation-delay: 0.3s;
+        }
+        
+        &::after {
+            @include pseudo();
+            left: 0;
+            bottom: -100%;
+            width: 2px;
+            height: 100%;
+            background: linear-gradient(0deg, transparent, rgb(0, 247, 255));
+            animation: animate4 1s linear infinite;
+            animation-delay: 0s;
+        }
+}
+
+@keyframes animate1 {
+    0% {
+      left: -100%;
+    }
+  
+    100% {
+      left: 100%;
+    }
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+
+    100% {
+        top: 100%;
+    }
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+
+    100% {
+        right: 100%;
+    }
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+
+    100% {
+        bottom: 100%;
+    }
+}
+
+.icons {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.delete-icon {
+    margin-right: 10px;
+}
+
+.delete-icon,
+.edit-icon {
+    &:hover {
+        transform: scale(1.5);
+        transition: .3 ease-in-out;
+    }
+
+    &:active {
+        opacity: 0.5;
+        transition: .3 ease-in-out;
+    }
+}
